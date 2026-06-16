@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>张晗煜 — HRBP Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F5F0E8',
+            'cream-dark': '#EDE7D9',
+            charcoal: '#2C2C2C',
+            muted: '#7A7060',
+            accent: '#8B7355',
+            'accent-light': '#C4B49A',
+            line: '#D6CFC3',
+          },
+          fontFamily: {
+            sans: ['Inter', 'PingFang SC', 'Hiragino Sans GB', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #F5F0E8; color: #2C2C2C; }
+
+    .lang-en [data-zh] { display: none; }
+    .lang-zh [data-en] { display: none; }
+
+    .nav-link { position: relative; padding-bottom: 2px; }
+    .nav-link::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: #8B7355;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -1px; top: 8px;
+      width: 7px; height: 7px;
+      background: #8B7355; border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .skill-bar-fill {
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .skill-bar-fill.animated { width: var(--target-width); }
+
+    .hero-initial {
+      font-size: clamp(80px, 15vw, 180px);
+      line-height: 1; color: #EDE7D9;
+      user-select: none; letter-spacing: -0.02em;
+    }
+
+    .section-rule { width: 32px; height: 2px; background: #8B7355; margin-bottom: 12px; }
+
+    .tag {
+      display: inline-block; padding: 3px 10px;
+      border: 1px solid #D6CFC3; font-size: 12px;
+      letter-spacing: 0.05em; color: #7A7060;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag:hover { border-color: #8B7355; color: #8B7355; }
+
+    .contact-item { transition: transform 0.2s ease; }
+    .contact-item:hover { transform: translateX(4px); }
+
+    nav {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(245, 240, 232, 0.85);
+    }
+
+    @media print {
+      nav, .lang-toggle-area { display: none; }
+      .fade-in { opacity: 1; transform: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+
+<body class="lang-zh font-sans antialiased">
+
+  <!-- 导航 -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-line">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <span class="text-sm tracking-widest text-muted font-light">ZHANG HANYU</span>
+      <div class="flex items-center gap-8">
+        <div class="hidden md:flex gap-6 text-xs tracking-widest text-muted">
+          <a href="#about" class="nav-link"><span data-zh>关于</span><span data-en>ABOUT</span></a>
+          <a href="#experience" class="nav-link"><span data-zh>经历</span><span data-en>EXPERIENCE</span></a>
+          <a href="#achievements" class="nav-link"><span data-zh>成就</span><span data-en>ACHIEVEMENTS</span></a>
+          <a href="#skills" class="nav-link"><span data-zh>技能</span><span data-en>SKILLS</span></a>
+          <a href="#contact" class="nav-link"><span data-zh>联系</span><span data-en>CONTACT</span></a>
+        </div>
+        <button onclick="toggleLang()" class="lang-toggle-area text-xs tracking-widest border border-line px-3 py-1 text-muted hover:border-accent hover:text-accent transition-colors">
+          <span data-zh>EN</span><span data-en>中文</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="about" class="min-h-screen flex flex-col justify-end pt-24 pb-16 px-6 max-w-5xl mx-auto">
+    <div class="absolute left-0 top-16 select-none pointer-events-none overflow-hidden w-full">
+      <div class="hero-initial font-light text-right pr-6 md:pr-12 opacity-60">张</div>
+    </div>
+
+    <div class="relative mt-auto">
+      <p class="text-xs tracking-[0.25em] text-muted mb-6 fade-in">
+        <span data-zh>HRBP · 人力资源业务伙伴 · 5年经验</span>
+        <span data-en>HRBP · HR Business Partner · 5 Years Experience</span>
+      </p>
+
+      <h1 class="text-5xl md:text-7xl font-light tracking-tight mb-2 fade-in" style="transition-delay:0.1s">
+        <span data-zh>张晗煜</span>
+        <span data-en>Zhang Hanyu</span>
+      </h1>
+      <h2 class="text-2xl md:text-4xl font-light text-accent tracking-tight mb-10 fade-in" style="transition-delay:0.15s">
+        <span data-zh>Zhang Hanyu</span>
+        <span data-en>张 晗 煜</span>
+      </h2>
+
+      <p class="max-w-xl text-muted font-light leading-relaxed text-base mb-12 fade-in" style="transition-delay:0.2s">
+        <span data-zh>五年互联网 & AI 行业全岗位招聘经验，三年多 HRBP 经历，亲历公司从 10 人成长至 300 人的全过程。擅长连接业务与人力，将人才策略转化为组织竞争力。</span>
+        <span data-en>Five years of full-cycle recruiting in Internet & AI, combined with 3+ years as HRBP. Experienced the full arc of scaling a company from 10 to 300 people. Skilled at bridging business needs and people strategy to build organizational capability.</span>
+      </p>
+
+      <div class="flex items-center gap-4 fade-in" style="transition-delay:0.25s">
+        <div class="h-px w-16 bg-accent-light"></div>
+        <span class="text-xs tracking-widest text-accent-light">北京蒸汽记忆科技</span>
+        <div class="h-px flex-1 bg-line"></div>
+        <span class="text-xs text-muted">
+          <span data-zh>期望城市：北京</span>
+          <span data-en>Target City: Beijing</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教育背景 -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <div class="fade-in">
+      <div class="section-rule"></div>
+      <h3 class="text-xs tracking-[0.3em] text-muted mb-12">
+        <span data-zh>教育背景</span><span data-en>EDUCATION</span>
+      </h3>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="fade-in border border-line p-8 hover:border-accent-light transition-colors duration-300">
+        <p class="text-xs tracking-widest text-accent mb-4">2016 — 2020</p>
+        <h4 class="text-xl font-light mb-1">
+          <span data-zh>黑龙江大学</span>
+          <span data-en>Heilongjiang University</span>
+        </h4>
+        <p class="text-muted text-sm mb-4">
+          <span data-zh>工商管理 · 本科</span>
+          <span data-en>Business Administration · Bachelor's Degree</span>
+        </p>
+        <p class="text-sm text-muted font-light leading-relaxed">
+          <span data-zh>全日制一本院校</span>
+          <span data-en>Full-time undergraduate, Tier-1 university</span>
+        </p>
+      </div>
+
+      <div class="fade-in border border-line p-8 bg-cream-dark flex flex-col justify-center" style="transition-delay:0.1s">
+        <p class="text-xs tracking-widest text-accent-light mb-3">
+          <span data-zh>求职意向</span>
+          <span data-en>TARGET ROLE</span>
+        </p>
+        <p class="text-2xl font-light mb-2">HRBP</p>
+        <p class="text-sm text-muted font-light">
+          <span data-zh>期望薪资 20K+ · 北京</span>
+          <span data-en>Expected 20K+ CNY/mo · Beijing</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工作经历 -->
+  <section id="experience" class="py-20 px-6 max-w-5xl mx-auto border-t border-line">
+    <div class="fade-in">
+      <div class="section-rule"></div>
+      <h3 class="text-xs tracking-[0.3em] text-muted mb-12">
+        <span data-zh>工作经历</span><span data-en>EXPERIENCE</span>
+      </h3>
+    </div>
+
+    <div class="relative border-l border-line ml-3 pl-8 space-y-16">
+
+      <!-- 蒸汽记忆 -->
+      <div class="relative timeline-item fade-in">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+          <div>
+            <h4 class="text-lg font-medium">
+              <span data-zh>HRBP</span>
+              <span data-en>HR Business Partner</span>
+            </h4>
+            <p class="text-accent text-sm tracking-wide mt-0.5">
+              <span data-zh>北京蒸汽记忆科技公司</span>
+              <span data-en>Beijing Steam Memory Technology</span>
+            </p>
+          </div>
+          <span class="text-xs text-muted tracking-widest mt-1 md:mt-0 shrink-0">2020.12 — 2025.03</span>
+        </div>
+
+        <!-- 招聘 -->
+        <p class="text-xs tracking-widest text-muted/70 mb-2 mt-6">
+          <span data-zh>— 招聘与人才搭建</span>
+          <span data-en>— RECRUITMENT & TEAM BUILDING</span>
+        </p>
+        <ul class="space-y-2 text-sm text-muted font-light leading-relaxed mb-4">
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>亲历公司从 10 人到 300 人的组织扩张，全面负责研发与非研发团队的招聘策略与落地</span>
+            <span data-en>Guided the company's growth from 10 to 300 people, owning end-to-end recruiting strategy for both R&D and non-R&D teams</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>独立搭建外地分支团队，有效保障研发、销售等关键岗位的持续补充</span>
+            <span data-en>Independently built remote branch teams, ensuring continuous pipeline for critical roles including R&D and sales</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>拓展招聘渠道，与 RPO 合作精准输送 6 名关键人才，显著缓解特定岗位缺口</span>
+            <span data-en>Expanded sourcing channels; partnered with RPO to deliver 6 critical hires, meaningfully closing key talent gaps</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>2022 年共发放 72 份 Offer，促成 50 人顺利入职，80% 以上为本硕学历</span>
+            <span data-en>In 2022, issued 72 offers and onboarded 50 employees, 80%+ holding bachelor's or master's degrees</span>
+          </li>
+        </ul>
+
+        <!-- HRBP -->
+        <p class="text-xs tracking-widest text-muted/70 mb-2 mt-6">
+          <span data-zh>— 业务伙伴 & 组织发展</span>
+          <span data-en>— HRBP & ORG DEVELOPMENT</span>
+        </p>
+        <ul class="space-y-2 text-sm text-muted font-light leading-relaxed mb-4">
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>与业务深度协作，完成全面人才盘点及组织力评估，共同制定人力规划与人力成本预算</span>
+            <span data-en>Partnered closely with business leaders on talent inventory, organizational capability assessment, workforce planning, and labor cost budgeting</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>负责三个团队全流程绩效管理，参与绩效制度迭代，输出新版绩效操作手册</span>
+            <span data-en>Managed full-cycle performance processes for 3 teams; contributed to system redesign and authored updated performance handbook</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>主导交付激励项目，有效提升团队动力；灵活应对组织架构调整，顺利完成合同换签等关键节点</span>
+            <span data-en>Led delivery incentive program to boost team motivation; navigated org restructuring and key contract renewals with minimal disruption</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>高效处理员工关系问题，涵盖劳动争议、五险一金、生育报销等全流程管理</span>
+            <span data-en>Handled employee relations end-to-end: labor disputes, social insurance, maternity reimbursement, and more</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>推动企业文化落地，完善员工福利与团建机制；无行政支持时独立组织公司周年庆等重要活动</span>
+            <span data-en>Drove culture initiatives and employee benefits; independently organized the company anniversary celebration with no admin support</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 东审鼎立 -->
+      <div class="relative timeline-item fade-in" style="transition-delay:0.1s">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+          <div>
+            <h4 class="text-lg font-medium">
+              <span data-zh>人事专员</span>
+              <span data-en>HR Specialist</span>
+            </h4>
+            <p class="text-accent text-sm tracking-wide mt-0.5">
+              <span data-zh>北京东审鼎立国际会计师事务所</span>
+              <span data-en>Beijing Dongshen Dingli Int'l Accounting Firm</span>
+            </p>
+          </div>
+          <span class="text-xs text-muted tracking-widest mt-1 md:mt-0 shrink-0">2020.06 — 2020.12</span>
+        </div>
+        <ul class="space-y-2 text-sm text-muted font-light leading-relaxed">
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>对接招聘需求，发布职位、开发维护招聘渠道、筛选简历、邀约面试及后续跟进</span>
+            <span data-en>Managed full recruiting cycle: posting roles, developing channels, screening, interviewing, and offer follow-up</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-accent-light mt-1.5 shrink-0">—</span>
+            <span data-zh>办理入离职手续，组织员工文化活动，管理人事档案及培训协助</span>
+            <span data-en>Handled onboarding/offboarding, employee events, HR file management, and training support</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 个人成就 -->
+  <section id="achievements" class="py-20 px-6 max-w-5xl mx-auto border-t border-line">
+    <div class="fade-in">
+      <div class="section-rule"></div>
+      <h3 class="text-xs tracking-[0.3em] text-muted mb-12">
+        <span data-zh>核心成就</span><span data-en>ACHIEVEMENTS</span>
+      </h3>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="fade-in group p-8 bg-cream-dark hover:bg-accent hover:text-cream transition-all duration-500 cursor-default">
+        <p class="text-3xl font-light mb-2 group-hover:text-cream transition-colors">10→300</p>
+        <p class="text-xs tracking-widest text-muted group-hover:text-cream/70 mb-3 transition-colors">
+          <span data-zh>人员规模</span><span data-en>HEADCOUNT SCALED</span>
+        </p>
+        <p class="text-sm text-muted font-light group-hover:text-cream/80 transition-colors">
+          <span data-zh>亲历并主导公司从 10 人到 300 人的全周期人才搭建</span>
+          <span data-en>Owned full-cycle talent building across a 30× headcount expansion</span>
+        </p>
+      </div>
+
+      <div class="fade-in group p-8 bg-cream-dark hover:bg-accent hover:text-cream transition-all duration-500 cursor-default" style="transition-delay:0.08s">
+        <p class="text-3xl font-light mb-2 group-hover:text-cream transition-colors">72</p>
+        <p class="text-xs tracking-widest text-muted group-hover:text-cream/70 mb-3 transition-colors">
+          <span data-zh>年度 Offer · 2022</span><span data-en>OFFERS IN 2022</span>
+        </p>
+        <p class="text-sm text-muted font-light group-hover:text-cream/80 transition-colors">
+          <span data-zh>50 人成功入职，80% 以上本硕学历，质量与速度兼顾</span>
+          <span data-en>50 joined; 80%+ with bachelor's or master's — quality and speed both delivered</span>
+        </p>
+      </div>
+
+      <div class="fade-in group p-8 bg-cream-dark hover:bg-accent hover:text-cream transition-all duration-500 cursor-default" style="transition-delay:0.16s">
+        <p class="text-3xl font-light mb-2 group-hover:text-cream transition-colors">3+</p>
+        <p class="text-xs tracking-widest text-muted group-hover:text-cream/70 mb-3 transition-colors">
+          <span data-zh>HRBP 年限</span><span data-en>YEARS AS HRBP</span>
+        </p>
+        <p class="text-sm text-muted font-light group-hover:text-cream/80 transition-colors">
+          <span data-zh>覆盖绩效、员工关系、组织发展、激励项目等全模块</span>
+          <span data-en>Covering performance, ER, org development, and incentive programs</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section id="skills" class="py-20 px-6 max-w-5xl mx-auto border-t border-line">
+    <div class="fade-in">
+      <div class="section-rule"></div>
+      <h3 class="text-xs tracking-[0.3em] text-muted mb-12">
+        <span data-zh>专业技能</span><span data-en>SKILLS</span>
+      </h3>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
+      <div class="space-y-6 fade-in">
+        <h4 class="text-xs tracking-widest text-accent mb-6">
+          <span data-zh>人力资源</span><span data-en>HR EXPERTISE</span>
+        </h4>
+        <div data-skill="全岗位招聘 / Full-cycle Recruiting" data-level="95"></div>
+        <div data-skill="HRBP / 业务伙伴" data-level="90"></div>
+        <div data-skill="绩效薪酬管理 / Performance & Comp" data-level="85"></div>
+        <div data-skill="员工关系 / Employee Relations" data-level="88"></div>
+      </div>
+
+      <div class="space-y-6 fade-in" style="transition-delay:0.1s">
+        <h4 class="text-xs tracking-widest text-accent mb-6">
+          <span data-zh>综合能力</span><span data-en>GENERAL SKILLS</span>
+        </h4>
+        <div data-skill="组织发展 / Org Development" data-level="82"></div>
+        <div data-skill="项目管理 / Project Management" data-level="85"></div>
+        <div data-skill="劳动法务 / Labor & Compliance" data-level="80"></div>
+        <div data-skill="企业文化活动 / Culture Programs" data-level="88"></div>
+      </div>
+    </div>
+
+    <div class="mt-14 fade-in">
+      <h4 class="text-xs tracking-widest text-muted mb-4">
+        <span data-zh>工具 & 其他</span><span data-en>TOOLS & MORE</span>
+      </h4>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">普通话 Mandarin</span>
+        <span class="tag">英语 English</span>
+        <span class="tag">企业微信</span>
+        <span class="tag">招聘渠道运营</span>
+        <span class="tag">人才盘点</span>
+        <span class="tag">组织力评估</span>
+        <span class="tag">人力成本预算</span>
+        <span class="tag">RPO 合作</span>
+        <span class="tag">劳动争议处理</span>
+        <span class="tag">新员工培训体系</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section id="contact" class="py-20 px-6 max-w-5xl mx-auto border-t border-line">
+    <div class="fade-in">
+      <div class="section-rule"></div>
+      <h3 class="text-xs tracking-[0.3em] text-muted mb-12">
+        <span data-zh>联系方式</span><span data-en>CONTACT</span>
+      </h3>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16">
+      <div class="fade-in">
+        <p class="text-2xl font-light mb-3">
+          <span data-zh>欢迎联系</span><span data-en>Let's Connect</span>
+        </p>
+        <p class="text-muted font-light leading-relaxed">
+          <span data-zh>正在寻找北京的 HRBP 机会，期待与志同道合的团队共同成长。</span>
+          <span data-en>Actively seeking HRBP opportunities in Beijing. Open to conversations about great teams and meaningful challenges.</span>
+        </p>
+      </div>
+
+      <div class="space-y-5 fade-in" style="transition-delay:0.1s">
+        <a href="tel:19910027502" class="contact-item flex items-center gap-4 group">
+          <span class="text-xs w-20 tracking-widest text-accent shrink-0">PHONE</span>
+          <span class="text-muted font-light group-hover:text-charcoal transition-colors">199 1002 7502</span>
+        </a>
+        <a href="mailto:986873810@qq.com" class="contact-item flex items-center gap-4 group">
+          <span class="text-xs w-20 tracking-widest text-accent shrink-0">EMAIL</span>
+          <span class="text-muted font-light group-hover:text-charcoal transition-colors">986873810@qq.com</span>
+        </a>
+        <div class="contact-item flex items-center gap-4">
+          <span class="text-xs w-20 tracking-widest text-accent shrink-0">
+            <span data-zh>城市</span><span data-en>CITY</span>
+          </span>
+          <span class="text-muted font-light">
+            <span data-zh>北京</span><span data-en>Beijing</span>
+          </span>
+        </div>
+        <div class="contact-item flex items-center gap-4">
+          <span class="text-xs w-20 tracking-widest text-accent shrink-0">
+            <span data-zh>期望薪资</span><span data-en>EXPECTED</span>
+          </span>
+          <span class="text-muted font-light">20K+ CNY / mo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-line">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <span class="text-xs text-muted tracking-widest">张晗煜 © 2026</span>
+      <span class="text-xs text-muted/50">HRBP · Beijing</span>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'zh';
+    function toggleLang() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      document.body.className = document.body.className
+        .replace(/lang-(zh|en)/g, '').trim() + ' lang-' + currentLang;
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('[data-skill]').forEach(el => {
+      const label = el.dataset.skill;
+      const level = el.dataset.level;
+      el.innerHTML = `
+        <div class="flex justify-between items-baseline mb-2">
+          <span class="text-sm font-light">${label}</span>
+          <span class="text-xs text-muted">${level}%</span>
+        </div>
+        <div class="h-px bg-line w-full relative">
+          <div class="skill-bar-fill h-px bg-accent absolute top-0 left-0"
+               style="--target-width:${level}%"></div>
+        </div>
+      `;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
